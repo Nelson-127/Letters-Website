@@ -13,8 +13,6 @@ parser.add_argument('surname', required=True)
 parser.add_argument('title', required=True)
 parser.add_argument('text', required=True)
 parser.add_argument('send_date', required=True)
-
-
 class MessageResource(Resource):
 
     def post(self):

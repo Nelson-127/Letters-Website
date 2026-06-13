@@ -11,6 +11,11 @@ from src.endpoints.message import MessageResource
 
 from src.admin_views.base import SecureIndexView
 
+from src.commands import (
+    init_db,
+    populate_db
+)
+
 
 def create_app():
     app = Flask(__name__)
@@ -36,21 +41,14 @@ def create_app():
         '/message',
     )
 
+    app.cli.add_command(init_db)
+    app.cli.add_command(populate_db)
+
     with app.app_context():
         db.create_all()
 
     @login_manager.user_loader
     def load_user(user_id):
         return Admin.query.get(int(user_id))
-
-    @app.route('/')
-    def home():
-        return "Letters Website"
-
-
-    @api.route('/test')
-    class Test(Resource):
-        def get(self):
-            return {'status': 'ok'}
 
     return app
