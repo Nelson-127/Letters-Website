@@ -11,7 +11,7 @@ api = Api(
     title='Letters API',
     version='1.0',
     doc='/docs',
-    prefix='/api'''
+    prefix='/api'
 )
 
 admin = Admin()
